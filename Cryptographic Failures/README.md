@@ -58,38 +58,20 @@ Cryptographic failures can have serious consequences, such as the compromise of 
     - [ ] Redirecting from HTTP to HTTPS
     - [ ] Not sending sensitive data over unencrypted channels
 
-**Tools:**
-
-- [ ] [Nmap](https://nmap.org/)
 - [ ] [OWASP O-Saft](https://owasp.org/www-project-o-saft/)
-- [ ] [sslscan](https://github.com/rbsec/sslscan)
-- [ ] [sslyze](https://github.com/nabla-c0d3/sslyze)
-- [ ] [SSL Labs](https://www.ssllabs.com/ssltest/)
-- [ ] [testssl.sh](https://github.com/drwetter/testssl.sh)
+
 ### **2.2 Test For Padding Oracle**
 
 - [ ] Find encrypted data in the application
 - [ ] A block cipher is used to encrypt the data. The length of the data is a multiple of the common cipher block size like 8 or 16 bytes.
-
-**Tools**
-
-- [ ] [Bletchley](https://code.blindspotsecurity.com/trac/bletchley)
-- [ ] [PadBuster](https://github.com/GDSSecurity/PadBuster)
-- [ ] [Padding Oracle Exploitation Tool (POET)](http://netifera.com/research/)
-- [ ] [Poracle](https://github.com/iagox86/Poracle)
-- [ ] [python-paddingoracle](https://github.com/mwielgoszewski/python-paddingoracle)
+- [ ] The application uses CBC mode to encrypt the data.
+- [ ] The application uses PKCS#5 or PKCS#7 padding.
+- [ ] The application returns the padding error message to the user.
 
 ### **2.3 Test for Sensitive Information Sent via Unencrypted Channels**
 
 - [ ] The application sends sensitive information using HTTP instead of HTTPS.
 - [ ] Testing sensitive information in Source Code or Logs
-
-**Tools**
-
-- [ ] [curl](https://curl.haxx.se/)
-- [ ] [grep](http://man7.org/linux/man-pages/man1/egrep.1.html)
-- [ ] [WireShark](https://www.wireshark.org/)
-- [ ] [TCPDUMP](https://www.tcpdump.org/)
 
 ### **2.4 Test for Weak Encryption**
 
@@ -118,4 +100,32 @@ Cryptographic failures can have serious consequences, such as the compromise of 
 - [ ] When symmetric encryption algorithm is used, ECB (Electronic Code Book) mode should not be used.
 - [ ] When PBKDF2 is used to hash password, the parameter of iteration is over 10000
 
-## **3. Lab**
+## **3. How to fix**
+
+-   Identify the type of cryptographic failure, such as weak encryption, key management issues, or poor randomness.
+-   Use strong and up-to-date encryption algorithms, such as AES or RSA, that are suitable for your application's needs. With AES, do not use ECB or CBC mode.
+-   Ensure that encryption keys are generated using secure and random sources, and are protected with proper key management mechanisms, such as key rotation and key revocation.
+-   Use secure cryptographic protocols, such as TLS/SSLv3, to secure data in transit.
+-   Use proper hashing algorithms, such as SHA-2, to securely store passwords and sensitive data. Do not use MD5 or SHA-1.
+-   Avoid hard-coding cryptographic keys or secrets in your code or configuration files.
+-   Use validated and secure cryptographic libraries and tools that are maintained and updated regularly.
+
+## **4. Tools**
+
+- [Burp Suite](https://portswigger.net/)
+- [Nmap](https://nmap.org/)
+- [sslscan](https://github.com/rbsec/sslscan)
+- [sslyze](https://github.com/nabla-c0d3/sslyze)
+- [SSL Labs](https://www.ssllabs.com/ssltest/)
+- [testssl.sh](https://github.com/drwetter/testssl.sh)
+- [PadBuster](https://github.com/GDSSecurity/PadBuster)
+- [curl](https://curl.haxx.se/)
+- [grep](http://man7.org/linux/man-pages/man1/egrep.1.html)
+- [WireShark](https://www.wireshark.org/)
+- [TCPDUMP](https://www.tcpdump.org/)
+
+## **5. References**
+
+- https://owasp.org/Top10/A02_2021-Cryptographic_Failures/
+- https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/README
+- https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html

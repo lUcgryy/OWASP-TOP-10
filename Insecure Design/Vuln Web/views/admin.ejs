@@ -1,0 +1,15 @@
+<%- include('header') %> 
+
+<h1>Admin Page</h1>
+<h2>Add user</h2>
+<form action="/admin" method="post">
+    <p><input type="text" name="username" placeholder="Username" required></p>
+    <p><input type="password" name="password1" placeholder="Password" required></p>
+    <p><input type="password" name="password2" placeholder="Confirm Password" required></p>
+    <input type="submit" value="Add user">
+</form>
+<% if (locals.noti) {-%>
+    <p><%=noti%></p>
+<% }-%>	
+
+<%- include('footer') %> 

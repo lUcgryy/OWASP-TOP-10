@@ -1,0 +1,9 @@
+<%- include('header') %>
+
+<h1>Lỗi Server</h1>
+<% if (locals.error) {%>
+    <p><%= locals.error.message %></p>
+    <p><%= locals.error.stack %></p>
+<% } %> 
+
+<%- include('footer') %>
