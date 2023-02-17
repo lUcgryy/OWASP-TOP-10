@@ -1,0 +1,1 @@
+Run docker-compose up --build and navigate to http://localhost/ to see the vulnerable web application.

@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  web-1:
+    build: .
+    volumes:
+      - ./market/index.php:/var/www/html/index.php
+    ports:
+      - 80:80

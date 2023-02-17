@@ -17,6 +17,15 @@ There are some common broken access control vulnerabilities:
 -   **Privilege escalation**: A user gets access to more resources or functionality than they are normally allowed, and such elevation or changes should have been prevented by the application
 -   **Bypassing authorization schema**: Bypassing the restrictions and limitations set by an application's authorization mechanism, such as a user role or access level.
 
+For example, in this [Web Project](./Vuln%20Web/) this php function `include` when not implement correctly, the attacker can retrieve the content of any file on server.
+
+```php
+include("/var/www/html/".str_replace("../","",$file));
+```
+If the attacker send the payload `....//....//....//....//etc/passwd` the function will return the content of the file `/etc/passwd
+
+![](./img/16.png)
+
 ## **2. How to test**
 
 ### **2.1. Directory traversal**
@@ -146,6 +155,15 @@ X-Client-IP
 -   Implement session management mechanisms to control user sessions and prevent unauthorized access.
 -   Regularly monitor and audit access logs and user activities to identify any suspicious or unauthorized access attempts.
 -   If (Cross-Origin Resource Sharing) CORS is enabled, try to limit CORS usage. Ensure that the Access-Control-Allow-Origin header is set to a specific domain or a wildcard, and not set to *.
+
+For example, the `include` function mentioned in the previous section can be fixed by applying whitelist validation to the input parameter.
+
+```php
+allowed = ['about', 'contact', 'home', 'services']
+if in_array($file, allowed) {
+    include("/var/www/html/".str_replace("../","",$file));
+}
+```
 
 ## **4. How to bypass**
 

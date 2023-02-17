@@ -10,6 +10,36 @@ Cryptographic failures refer to any weaknesses or flaws in cryptographic systems
 
 Cryptographic failures can have serious consequences, such as the compromise of sensitive information or the loss of trust in a system. It is important to continuously monitor and assess cryptographic systems to ensure that they are secure and free from failures.
 
+For example, in this [Web Project](./Vuln%20Web/), in file [](./Vuln%20Web/html/classes/user.php), these two function is vulnerable to padding oracle attack:
+
+```php
+function encryptString($unencryptedText, $passphrase) { 
+  $iv = mcrypt_create_iv( mcrypt_get_iv_size(MCRYPT_DES, MCRYPT_MODE_CBC), MCRYPT_RAND);
+  $text = pkcs5_pad($unencryptedText,8);
+  $enc = mcrypt_encrypt(MCRYPT_DES, $passphrase, $text, MCRYPT_MODE_CBC, $iv); 
+  return base64_encode($iv.$enc); 
+}
+
+function decryptString($encryptedText, $passphrase) {
+  $encrypted = base64_decode($encryptedText);
+  $iv_size =  mcrypt_get_iv_size(MCRYPT_DES, MCRYPT_MODE_CBC);
+  $iv = substr($encrypted,0,$iv_size);
+  $dec = mcrypt_decrypt(MCRYPT_DES, $passphrase, substr($encrypted,$iv_size), MCRYPT_MODE_CBC, $iv);
+  $str = pkcs5_unpad($dec); 
+  if ($str === false) {
+    echo "Invalid padding";
+    die(); 
+  }
+  else {
+    return $str; 
+  }
+}
+```
+
+Firstly, the encryption algorithm is DES, which is a weak encryption algorithm. Secondly, the encryption mode is CBC,  Finally, the padding error message is returned to the user. Both of these factors make the application vulnerable to padding oracle attack.
+
+[Here](./Pentest%20Report.md) is how to exploit this vulnerability.
+
 ## **2. How to test**
 
 ### **2.1 Test For Weak Transport Layer Security**
@@ -27,9 +57,9 @@ Cryptographic failures can have serious consequences, such as the compromise of 
         - [ ] Anonymous ciphers 
         - [ ] [RC4 ciphers (NOMORE)](https://www.rc4nomore.com/)
         - [ ] CBC mode ciphers (BEAST, [Lucky 13](https://en.wikipedia.org/wiki/Lucky_Thirteen_attack))
-        - [] [TLS compression (CRIME)](https://en.wikipedia.org/wiki/CRIME)
-        - [] [Weak DHE keys (LOGJAM)](https://weakdh.org/)
-        - [] Weak Cryptographic Libraries
+        - [ ] [TLS compression (CRIME)](https://en.wikipedia.org/wiki/CRIME)
+        - [ ] [Weak DHE keys (LOGJAM)](https://weakdh.org/)
+        - [ ] Weak Cryptographic Libraries
 
 
 -   Digital Certificates
@@ -57,9 +87,7 @@ Cryptographic failures can have serious consequences, such as the compromise of 
     - [ ] Caching of Sensitive Data
     - [ ] Redirecting from HTTP to HTTPS
     - [ ] Not sending sensitive data over unencrypted channels
-
-- [ ] [OWASP O-Saft](https://owasp.org/www-project-o-saft/)
-
+    
 ### **2.2 Test For Padding Oracle**
 
 - [ ] Find encrypted data in the application
@@ -109,6 +137,36 @@ Cryptographic failures can have serious consequences, such as the compromise of 
 -   Use proper hashing algorithms, such as SHA-2, to securely store passwords and sensitive data. Do not use MD5 or SHA-1.
 -   Avoid hard-coding cryptographic keys or secrets in your code or configuration files.
 -   Use validated and secure cryptographic libraries and tools that are maintained and updated regularly.
+
+The example from the previous section can be fixed like below.
+
+```php
+function encryptString($unencryptedText, $passphrase) { 
+  $iv = mcrypt_create_iv( mcrypt_get_iv_size(MCRYPT_DES, MCRYPT_MODE_CFB), MCRYPT_RAND);
+  $text = pkcs5_pad($unencryptedText,8);
+  $enc = mcrypt_encrypt(MCRYPT_DES, $passphrase, $text, MCRYPT_MODE_CFB, $iv); 
+  return base64_encode($iv.$enc); 
+}
+
+function decryptString($encryptedText, $passphrase) {
+  $encrypted = base64_decode($encryptedText);
+  $iv_size =  mcrypt_get_iv_size(MCRYPT_DES, MCRYPT_MODE_CFB);
+  $iv = substr($encrypted,0,$iv_size);
+  $dec = mcrypt_decrypt(MCRYPT_DES, $passphrase, substr($encrypted,$iv_size), MCRYPT_MODE_CFB, $iv);
+  $str = pkcs5_unpad($dec); 
+  if ($str === false) {
+    echo "Something went wrong";
+    die(); 
+  }
+  else if ($strpos($str, "user=") !== 0){
+    echo "Something went wrong";
+    die();
+  }
+  else {
+    return $str; 
+  }
+}
+```
 
 ## **4. Tools**
 

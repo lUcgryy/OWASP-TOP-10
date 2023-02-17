@@ -16,7 +16,7 @@ Examples of Insecure Design vulnerabilities include:
 -   Failure to protect sensitive data or use secure encryption algorithms.
 -   Lack of secure coding practices or adherence to industry-standard security guidelines.
 
-For example, when developing websites, the developers may accidentally allow HTTP protocols for the user to access the website.
+For example, in this [Web Project](./Vuln%20Web/), the developers accidentally allow HTTP protocols for the user to access the website.
 
 ```javascript
 var server = http.createServer(app);
