@@ -83,6 +83,7 @@ app.post('/admin', checkLogin, async (req, res) => {
     }
     data = [username, password1];
     await db.executeQuery('Insert into users (username, password) values (?, ?)', data);
+    res.render('admin', {title: "Admin", noti: "User added successfully"});
     console.log('Insert user successfully');
 });
 app.use(function(req, res) {
