@@ -161,7 +161,7 @@ For example, the `include` function mentioned in the previous section can be fix
 ```php
 allowed = ['about', 'contact', 'home', 'services']
 if in_array($file, allowed) {
-    include("/var/www/html/".str_replace("../","",$file));
+    include("/var/www/html/".$file);
 }
 ```
 
