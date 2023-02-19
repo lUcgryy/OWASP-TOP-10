@@ -1,0 +1,128 @@
+$ sslscan https://cmctelecom.vn
+Version: 2.0.15-static
+OpenSSL 1.1.1q-dev  xx XXX xxxx
+
+Connected to 103.63.111.41
+
+Testing SSL server cmctelecom.vn on port 443 using SNI name cmctelecom.VN
+
+ SSL/TLS Protocols:
+SSLv2     disabled
+SSLv3     disabled
+TLSv1.0   disabled
+TLSv1.1   disabled
+TLSv1.2   enabled
+TLSv1.3   enabled
+
+ TLS Fallback SCSV:
+Server supports TLS Fallback SCSV
+
+ TLS renegotiation:
+Session renegotiation not supported
+
+ TLS Compression:
+Compression disabled
+
+ Heartbleed:
+TLSv1.3 not vulnerable to heartbleed
+TLSv1.2 not vulnerable to heartbleed
+
+ Supported Server Cipher(s):
+Preferred TLSv1.3  128 bits  TLS_AES_128_GCM_SHA256        Curve 25519 DHE 253
+Accepted  TLSv1.3  256 bits  TLS_AES_256_GCM_SHA384        Curve 25519 DHE 253
+Accepted  TLSv1.3  256 bits  TLS_CHACHA20_POLY1305_SHA256  Curve 25519 DHE 253
+Preferred TLSv1.2  256 bits  ECDHE-ECDSA-AES256-GCM-SHA384 Curve 25519 DHE 253
+Accepted  TLSv1.2  256 bits  ECDHE-RSA-AES256-GCM-SHA384   Curve 25519 DHE 253
+Accepted  TLSv1.2  256 bits  DHE-RSA-AES256-GCM-SHA384     DHE 2048 bits
+Accepted  TLSv1.2  256 bits  ECDHE-ECDSA-CHACHA20-POLY1305 Curve 25519 DHE 253
+Accepted  TLSv1.2  256 bits  ECDHE-RSA-CHACHA20-POLY1305   Curve 25519 DHE 253
+Accepted  TLSv1.2  128 bits  ECDHE-ECDSA-AES128-GCM-SHA256 Curve 25519 DHE 253
+Accepted  TLSv1.2  128 bits  ECDHE-RSA-AES128-GCM-SHA256   Curve 25519 DHE 253
+Accepted  TLSv1.2  128 bits  DHE-RSA-AES128-GCM-SHA256     DHE 2048 bits
+
+ Server Key Exchange Group(s):
+TLSv1.3  128 bits  secp256r1 (NIST P-256)
+TLSv1.3  192 bits  secp384r1 (NIST P-384)
+TLSv1.3  260 bits  secp521r1 (NIST P-521)
+TLSv1.3  128 bits  x25519
+TLSv1.3  224 bits  x448
+TLSv1.2  128 bits  secp256r1 (NIST P-256)
+TLSv1.2  192 bits  secp384r1 (NIST P-384)
+TLSv1.2  260 bits  secp521r1 (NIST P-521)
+TLSv1.2  128 bits  x25519
+TLSv1.2  224 bits  x448
+
+ SSL Certificate:
+Signature Algorithm: ecdsa-with-SHA256
+ECC Curve Name:      prime256v1
+ECC Key Strength:    128
+
+Subject:  localhost
+Issuer:   localhost
+
+Not valid before: Apr  9 13:19:32 2022 GMT
+Not valid after:  Jan 19 03:14:08 2038 GMT
+$ sslscan https://cmctelecom.VN
+Version: 2.0.15-static
+OpenSSL 1.1.1q-dev  xx XXX xxxx
+
+Connected to 103.63.111.41
+
+Testing SSL server cmctelecom.VN on port 443 using SNI name cmctelecom.VN
+
+ SSL/TLS Protocols:
+SSLv2     disabled
+SSLv3     disabled
+TLSv1.0   disabled
+TLSv1.1   disabled
+TLSv1.2   enabled
+TLSv1.3   enabled
+
+ TLS Fallback SCSV:
+Server supports TLS Fallback SCSV
+
+ TLS renegotiation:
+Session renegotiation not supported
+
+ TLS Compression:
+Compression disabled
+
+ Heartbleed:
+TLSv1.3 not vulnerable to heartbleed
+TLSv1.2 not vulnerable to heartbleed
+
+ Supported Server Cipher(s):
+Preferred TLSv1.3  128 bits  TLS_AES_128_GCM_SHA256        Curve 25519 DHE 253
+Accepted  TLSv1.3  256 bits  TLS_AES_256_GCM_SHA384        Curve 25519 DHE 253
+Accepted  TLSv1.3  256 bits  TLS_CHACHA20_POLY1305_SHA256  Curve 25519 DHE 253
+Preferred TLSv1.2  256 bits  ECDHE-ECDSA-AES256-GCM-SHA384 Curve 25519 DHE 253
+Accepted  TLSv1.2  256 bits  ECDHE-RSA-AES256-GCM-SHA384   Curve 25519 DHE 253
+Accepted  TLSv1.2  256 bits  DHE-RSA-AES256-GCM-SHA384     DHE 2048 bits
+Accepted  TLSv1.2  256 bits  ECDHE-ECDSA-CHACHA20-POLY1305 Curve 25519 DHE 253
+Accepted  TLSv1.2  256 bits  ECDHE-RSA-CHACHA20-POLY1305   Curve 25519 DHE 253
+Accepted  TLSv1.2  128 bits  ECDHE-ECDSA-AES128-GCM-SHA256 Curve 25519 DHE 253
+Accepted  TLSv1.2  128 bits  ECDHE-RSA-AES128-GCM-SHA256   Curve 25519 DHE 253
+Accepted  TLSv1.2  128 bits  DHE-RSA-AES128-GCM-SHA256     DHE 2048 bits
+
+ Server Key Exchange Group(s):
+TLSv1.3  128 bits  secp256r1 (NIST P-256)
+TLSv1.3  192 bits  secp384r1 (NIST P-384)
+TLSv1.3  260 bits  secp521r1 (NIST P-521)
+TLSv1.3  128 bits  x25519
+TLSv1.3  224 bits  x448
+TLSv1.2  128 bits  secp256r1 (NIST P-256)
+TLSv1.2  192 bits  secp384r1 (NIST P-384)
+TLSv1.2  260 bits  secp521r1 (NIST P-521)
+TLSv1.2  128 bits  x25519
+TLSv1.2  224 bits  x448
+
+SSL Certificate:
+Signature Algorithm: ecdsa-with-SHA256
+ECC Curve Name:      prime256v1
+ECC Key Strength:    128
+
+Subject:  localhost
+Issuer:   localhost
+
+Not valid before: Apr  9 13:19:32 2022 GMT
+Not valid after:  Jan 19 03:14:08 2038 GMT

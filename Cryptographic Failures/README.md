@@ -4,6 +4,18 @@
 
 </div>
 
+## **Table of Content**
+
+- [**1. Description**](#1-description)
+- [**2. How to test**](#2-how-to-test)
+    - [**2.1. Test For Weak Transport Layer Security**](#21-test-for-weak-transport-layer-security)
+    - [**2.2. Test For Padding Oracle**](#22-test-for-padding-oracle)
+    - [**2.3. Test for Sensitive Information Sent via Unencrypted Channels**](#23-test-for-sensitive-information-sent-via-unencrypted-channels)
+    - [**2.4. Test for Weak Encryption**](#24-test-for-weak-encryption)
+- [**3. How to fix**](#3-how-to-fix)
+- [**4. Tools**](#4-tools)
+- [**5. References**](#5-references)
+
 ## **1. Description**
 
 Cryptographic failures refer to any weaknesses or flaws in cryptographic systems that result in the protection they offer being compromised. This could be due to a number of factors such as design weaknesses, implementation errors, or attacks on the underlying cryptographic algorithms.
@@ -78,6 +90,12 @@ Firstly, the encryption algorithm is DES, which is a weak encryption algorithm. 
         - [ ] Do not include internal domain names on externally facing certificates
 
     - [ ] Test for the use of Wildcard Certificates
+
+      Wildcard certificates can be convenient, however they violate the principal of least privilege, as a single certificate is valid for all subdomains of a domain (such as *.example.org). Where multiple systems are sharing a wildcard certificate, the likelihood that the private key for the certificate is compromised increases, as the key may be present on multiple systems. Additionally, the value of this key is significantly increased, making it a more attractive target for attackers.
+
+      Here is the example of a wildcard certificate:
+
+      ![](./img/7.png)
 
 -   Application 
 
@@ -172,15 +190,30 @@ function decryptString($encryptedText, $passphrase) {
 
 - [Burp Suite](https://portswigger.net/)
 - [Nmap](https://nmap.org/)
-- [sslscan](https://github.com/rbsec/sslscan)
-- [sslyze](https://github.com/nabla-c0d3/sslyze)
-- [SSL Labs](https://www.ssllabs.com/ssltest/)
-- [testssl.sh](https://github.com/drwetter/testssl.sh)
-- [PadBuster](https://github.com/GDSSecurity/PadBuster)
-- [curl](https://curl.haxx.se/)
-- [grep](http://man7.org/linux/man-pages/man1/egrep.1.html)
 - [WireShark](https://www.wireshark.org/)
 - [TCPDUMP](https://www.tcpdump.org/)
+
+**SSL Analyze**
+- [sslscan](https://github.com/rbsec/sslscan)
+
+  Example Usage: [here](./doc/sslscan.txt)
+
+- [sslyze](https://github.com/nabla-c0d3/sslyze)
+
+  Example Usage: [here](./doc/sslyze.txt)
+
+- [SSL Labs](https://www.ssllabs.com/ssltest/)
+
+  Example Result: https://www.ssllabs.com/ssltest/analyze.html?d=cmctelecom.vn
+
+**Padding Oracle Attack**
+
+- [PadBuster](https://github.com/GDSSecurity/PadBuster)
+
+  Usage: padbuster.pl URL EncryptedSample BlockSize [options]
+  
+  Result: [here](./doc/padbuster.txt)
+
 
 ## **5. References**
 

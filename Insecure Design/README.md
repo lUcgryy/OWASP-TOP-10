@@ -4,6 +4,14 @@
 
 </div>
 
+## **Table of Content**
+
+- [**1. Description**](#1-description)
+- [**2. How to test**](#2-how-to-test)
+- [**3. How to fix**](#3-how-to-fix)
+- [**4. Tools**](#4-tools)
+- [**5. References**](#5-references)
+
 ## **1. Description**
 
 Insecure design is a vulnerability that occurs when the application is designed in a way that allows attackers to bypass the security controls. This vulnerability is not a bug, but a design flaw. It is usually caused by the lack of security requirements in the design phase.
